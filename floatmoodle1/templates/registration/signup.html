@@ -1,0 +1,46 @@
+<!-- templates/registration/signup.html -->
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<body>
+    
+    <center>
+
+    <br>
+    <br>
+    <font size="6"
+            face="arial"
+            color="black">
+    Float - Moodle
+    </font> 
+    <br>
+    <br>
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/signup/';" value="Signup" />  
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/accounts/login/';" value="Login" /> 
+    </center>
+    <br>
+    <br>
+    <style>
+        .tab {
+            display: inline-block;
+            margin-left: 300px;
+        }
+    </style>
+    <span class="tab">
+    <font size="6"
+        color="black">
+    <p>Signup with Float - Moodle</p>
+    </font>
+    
+    
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+       <input type="submit" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " value="Signup"/> 
+    </form>
+    </span>
+    </body>
+{% endblock %}
