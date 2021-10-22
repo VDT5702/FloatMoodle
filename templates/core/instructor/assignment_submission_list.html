@@ -18,7 +18,7 @@
                 <p> <h4>Id</h4> {{ foo.university_id }} </p>
                 <hr/>
                 <p> <h4>Answer</h4> {{ foo.content }}  </p>
-
+                <p> <a href="{{ foo.file.url }}"> View Submission </a></p>
                 <br/>
                 <a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>
                   <hr/>

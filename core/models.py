@@ -20,7 +20,7 @@ class AssignmentSubmission(models.Model):
     name = models.CharField(max_length=100)
     university_id = models.CharField(max_length=100)
     content = models.TextField(null=True, blank=True)
-    file = models.FileField(null=True, blank=True)
+    file = models.FileField(upload_to='submissions/',null=True, blank=True)
 
     def __str__(self):
         return self.university_id
