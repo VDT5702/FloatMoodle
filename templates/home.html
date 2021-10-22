@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if request.user.is_authenticated and request.user.role == 'instructor' %}
+    <font size="6"
+            face="arial"
+            color="black">
+    Float - Moodle
+    </font>  
+    <center>
+    <br>
+    <h1> {{ request.user.first_name }} </h1>
+    <br>
+    <ul >
+        <li><a href="{% url 'authentication:instructor-profile-update' %}"> Edit Profile</a></li>
+        <li><a href="{% url 'authentication:logout' %}"> Logout</a></li>
+    </ul>
+
+{% elif request.user.is_authenticated and request.user.role == 'student' %}
+<font size="6"
+face="arial"
+color="black">
+Float - Moodle
+</font>  
+<center>
+
+    <a href="">
+        <span>
+            {{ request.user.first_name }}
+        </span>
+    </a>
+
+    <ul>
+
+        <li><a href="{% url 'authentication:student-profile-update' %}"> Edit Profile</a></li>
+        <li><a href="{% url 'authentication:logout' %}"> Logout</a></li>
+
+    </ul>
+
+{% else %}
+  <body>
+
+  <center>
+
+  <br>
+  <br>
+  <font size="6"
+          face="arial"
+          color="black">
+   Float - Moodle
+  </font>
+  <br>
+  <br>
+  <li><a href="#">Register</a>
+    <ul>
+        <li><a href="{% url 'authentication:instructor-register' %}"> INSTRUCTOR</a></li>
+        <li><a href="{% url 'authentication:student-register' %}"> STUDENT</a></li>
+    </ul>
+  </li>
+
+  <li>
+    <a href="{% url 'authentication:login' %}">
+        <p> Login</p>
+    </a>
+</li>
+
+  <br>
+  <br>
+  
+  </body> 
+{% endif %}
+{% endblock %}
