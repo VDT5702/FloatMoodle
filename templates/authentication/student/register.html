@@ -16,8 +16,10 @@
  </font> 
   <br>
   <br>
-  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/signup/';" value="Signup" />  
-  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/accounts/login/';" value="Login" /> 
+  <!--<input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/signup/';" value="Signup" />  
+  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/accounts/login/';" value="Login" />-->
+  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />
+  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick=location.href="{% url 'authentication:login' %}"; value="LOGIN" /> 
   <br> 
   <br>
   </center>
@@ -32,7 +34,7 @@
 <form action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; ">Login</button>
+  <button type="submit" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; ">Register</button>
 </form>
 </font>
 {% endblock %}

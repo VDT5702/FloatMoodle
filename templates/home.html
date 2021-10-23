@@ -12,12 +12,21 @@
     </font>  
     <center>
     <br>
-    <h1> {{ request.user.first_name }} </h1>
+    <h1> Welcome {{ request.user.first_name }} </h1>
     <br>
     <ul >
-        <li><a href="{% url 'authentication:instructor-profile-update' %}"> Edit Profile</a></li>
-        <li><a href="{% url 'authentication:logout' %}"> Logout</a></li>
+        <!--<li><a href="{% url 'authentication:instructor-profile-update' %}"> Edit Profile</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:instructor-profile-update' %}"; value="Edit Profile" /> 
+        <!--<li><a href="{% url 'authentication:logout' %}"> Logout</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:logout' %}"; value="Log Out" /> 
+
     </ul>
+
+    <br>
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-create' %}"; value="Create Assignment" /> 
+    <br>
+    <br>
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-list' %}"; value="View Assignments" /> 
 
 {% elif request.user.is_authenticated and request.user.role == 'student' %}
 <font size="6"
@@ -27,16 +36,22 @@ Float - Moodle
 </font>  
 <center>
 
-    <a href="">
-        <span>
-            {{ request.user.first_name }}
-        </span>
-    </a>
+    
+        <h1>
+            Welcome {{ request.user.first_name }}
+        </h1>
+    
 
     <ul>
 
-        <li><a href="{% url 'authentication:student-profile-update' %}"> Edit Profile</a></li>
-        <li><a href="{% url 'authentication:logout' %}"> Logout</a></li>
+        <!--<li><a href="{% url 'authentication:student-profile-update' %}"> Edit Profile</a></li>
+        <li><a href="{% url 'authentication:logout' %}"> Logout</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:student-profile-update' %}"; value="Edit Profile" />
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:logout' %}"; value="Log Out" /> 
+        <br>
+        <br>
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-list' %}"; value="View Assignments" /> 
+
 
     </ul>
 
@@ -54,18 +69,23 @@ Float - Moodle
   </font>
   <br>
   <br>
-  <li><a href="#">Register</a>
+  <h1>Register as</h1>
     <ul>
-        <li><a href="{% url 'authentication:instructor-register' %}"> INSTRUCTOR</a></li>
-        <li><a href="{% url 'authentication:student-register' %}"> STUDENT</a></li>
+        <!--<li><a href='{% url "authentication:instructor-register" %}'> INSTRUCTOR</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:instructor-register' %}"; value="INSTRUCTOR" /> 
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:student-register' %}"; value="STUDENT" />
+        <!--<li><a href="{% url 'authentication:student-register' %}"> STUDENT</a></li>-->
     </ul>
-  </li>
+  
 
-  <li>
-    <a href="{% url 'authentication:login' %}">
+  
+    <!--<a href="{% url 'authentication:login' %}">
         <p> Login</p>
-    </a>
-</li>
+    </a> -->
+
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:login' %}"; value="LOGIN" />
+    
+
 
   <br>
   <br>

@@ -1,26 +1,39 @@
 {% extends 'base.html' %}
-{% load static %}
+<!--{% load static %}-->
 {% block title %}Assignments{% endblock %}
 
 
 {% block content %}
+{% if request.user.is_authenticated and request.user.role == 'instructor' %}
+
 
     <div class="container">
-
+        
         <div class="col-12 col-sm-6 col-md-10">
+            <br>
+            <br>
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />
+            <br>
+            <br>
                     <strong><h3>Assignments</h3></strong>
         <hr/>
-            {% for foo in assignment_submission %}
 
+
+           {% for foo in assignment_submission %}
+
+                <p> <h4>Assignment Name</h4> {{ foo.assignment_name }} </p>
 
                 <p> <h4>Name</h4> {{ foo.name }} </p>
 
                 <p> <h4>Id</h4> {{ foo.university_id }} </p>
-                <hr/>
+                
                 <p> <h4>Answer</h4> {{ foo.content }}  </p>
-                <p> <a href="{{ foo.file.url }}"> View Submission </a></p>
+
+                <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-feedback' %}"; value="Give Feedback" />
+               
+                <p> <a href="{{ foo.file.url }}"> View Submission File</a></p>
                 <br/>
-                <a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>
+                <!--<a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>-->
                   <hr/>
             {% endfor %}
 
@@ -36,5 +49,59 @@
         </div>
 
     </div>
+    {% elif request.user.is_authenticated and request.user.role == 'student' %}
+    <div class="container">
+        
+        <div class="col-12 col-sm-6 col-md-10">
+            <br>
+            <br>
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />
+            <br>
+            <br>
+                    <strong><h3>Assignments</h3></strong>
+        <hr/>
 
+
+           {% for foo in assignment_submission %}
+
+                <p> <h4>Assignment Name</h4> {{ foo.assignment_name }} </p>
+
+                <p> <h4>Name</h4> {{ foo.name }} </p>
+
+                <p> <h4>Id</h4> {{ foo.university_id }} </p>
+                
+                <p> <h4>Answer</h4> {{ foo.content }}  </p>
+
+                <p> <h4>Feedback</h4> {{ foo.feedback }}  </p>
+
+                
+
+                <p> <a href="{{ foo.file.url }}">View Submission File</a></p>
+                <br/>
+                <!--<a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>-->
+                  <hr/>
+            {% endfor %}
+
+
+
+
+            <br/>
+
+
+            <br/>
+
+
+        </div>
+
+    </div>
+    
+
+    {% else %}
+
+    404 Not Found
+
+    {% endif %}
+
+
+   
 {% endblock %}

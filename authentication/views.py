@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView, RedirectView, UpdateView
 from django.http import Http404
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 from .forms import *
 from .models import User
@@ -12,6 +14,33 @@ from .decorators import user_is_student, user_is_instructor
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
+def student_change_password(request):
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)  # Important!
+                messages.success(request, 'Your password was successfully updated!')
+                return redirect('authentication:login')
+            else:
+                messages.error(request, 'Please correct the error below.')
+        else:
+            form = PasswordChangeForm(request.user)
+        return render(request, 'authentication/student/change_password.html', {'form': form})
+
+def instructor_change_password(request):
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)  # Important!
+                messages.success(request, 'Your password was successfully updated!')
+                return redirect('authentication:login')
+            else:
+                messages.error(request, 'Please correct the error below.')
+        else:
+            form = PasswordChangeForm(request.user)
+        return render(request, 'authentication/instructor/change_password.html', {'form': form})
 
 # STUDENT REGISTRATION VIEW
 class RegisterStudentView(CreateView):
@@ -70,6 +99,8 @@ class EditStudentProfileView(UpdateView):
         if obj is None:
             raise Http404("Patient doesn't exists")
         return obj
+
+    
 
 
 # REGISTER INSTRUCTOR VIEW

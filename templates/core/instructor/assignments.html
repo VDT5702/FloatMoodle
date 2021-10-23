@@ -9,27 +9,34 @@
 
         <div class="col-12 col-sm-6 col-md-10">
             {% if request.user.is_authenticated and request.user.role == 'instructor' %}
+            <br>
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />
+            <br>
                 {% for foo in assignment %}
-                    <h3><strong> {{ foo.title }}  </strong></h3>
+                    <h3><strong> Assignment Name: {{ foo.title }}  </strong></h3>
                     <hr/>
                     <p> <h4>Content</h4> {{ foo.content }} </p>
                     <br/>
                     <p> <h4>Marks</h4> {{ foo.marks }} </p>
 
-                    <p> <h4>Time</h4> {{ foo.duration }} hours </p>
+                    <p> <h4>Time</h4> {{ foo.duration }}  </p>
 
-                    <a href="{% url 'core:delete-assignment' foo.id %}">Delete Assignment</a>
+                    <!--<a href="{% url 'core:delete-assignment' foo.id %}">Delete Assignment</a>-->
+                    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:delete-assignment' foo.id %}"; value="Delete Assignment" />
 
                 {% endfor %}
                 <hr/>
 
 
-                <h4><a href="{% url 'core:assignment-create' %}">Create a Assignment</a></h4>
-
+                <!--<h4><a href="{% url 'core:assignment-create' %}">Create a Assignment</a></h4>-->
+                <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-create' %}"; value="Create Assignment" />
+                <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-submission-list' %}"; value="View Submissions" />
 
             {% else %}
 
-
+            <br>
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />
+            <br>
                 {% for foo in assignment %}
                     <h3><strong> {{ foo.title }}  </strong></h3>
                     <hr/>
@@ -37,12 +44,15 @@
                     <br/>
                     <p> <h4>Marks</h4> {{ foo.marks }} </p>
 
-                    <p> <h4>Time</h4> {{ foo.duration }} hours </p>
+                    <p> <h4>Time</h4> {{ foo.duration }}  </p>
                           <br/>
-                      <h4><a href="{% url 'core:assignment-submission' %}">Submit Assignment</a></h4>
+                      <!--<h4><a href="{% url 'core:assignment-submission' %}">Submit Assignment</a></h4>-->
+                      <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-submission' %}"; value="Solve Assignment" />
                   <hr/>
                 {% endfor %}
                 <hr/>
+
+                <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-submission-list' %}"; value="View Submissions" />
 
 
             {% endif %}

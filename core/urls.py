@@ -1,4 +1,6 @@
 from django.urls import path
+
+from core.views import FeedbackSubmission
 from .views import (
 #HomeView,
 AssignmentCreateView,
@@ -23,4 +25,5 @@ urlpatterns = [
                   path('assignment-submission/', AssignmentSubmissionView.as_view(), name='assignment-submission'),
                   path('assignment-submission-list/', AssignmentSubmissionListView.as_view(), name='assignment-submission-list'),
                   path('<pk>/delete/', AssignmentSubmissionDelete.as_view(), name='assignment-submission-delete'),
+                  path('assignment/feedback/',FeedbackSubmission.as_view(),name='assignment-feedback'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
